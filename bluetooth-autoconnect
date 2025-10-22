@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S python3 -u
 
 import getopt
 import os
@@ -9,6 +9,8 @@ import dbus
 
 from dbus.mainloop.glib import DBusGMainLoop
 from functools import partial
+import gi
+gi.require_version('GLib', '2.0')
 from gi.repository import GLib
 from xml.etree import ElementTree
 
@@ -173,7 +175,7 @@ def main():
     # This script does not use any commands so we will exit if one is
     # incorrectly provided
     if len(cmds) > 0:
-        print(f"{SCRIPT_NAME}: command '{c}' not recognized", file=sys.stderr, flush=True)
+        print(f"{SCRIPT_NAME}: command '{cmds}' not recognized", file=sys.stderr, flush=True)
         print(f"Try '{SCRIPT_NAME} --help' for more information", file=sys.stderr, flush=True)
         sys.exit(1)
 
